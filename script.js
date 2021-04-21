@@ -16,10 +16,40 @@ function numRand(){
     return Math.floor(Math.random() * 10 ) + 1;
 }
 
-for(var i = 0; i < 5; i++){
-    numeriRandom[i] = numRand();
+var i = 0;
+while(numeriRandom.length < 5){
+    var numeroRandom = numRand();
+    if(numeriRandom.indexOf(numeroRandom) === -1){
+        numeriRandom[i] = numeroRandom;
+        i++;
+    }
 }
 
 alert(numeriRandom);
 
 // TIMER DI TOT (30) SECONDI 
+var secondi = 5;
+var h1Element = document.getElementById("timer");
+var numeriUomo = [];
+
+var clock = setInterval(function() {
+    if (secondi === 0) {
+        clearInterval(clock);
+
+        // INPUT NUMERI UTENTE
+        for(var i = 0; i < numeriRandom.length; i++){
+            var number = parseInt(prompt("Inserisci il numero che ti ricordi"));
+            numeriUomo[i] = number;
+        }
+        //console.log(numeriUomo)
+        h1Element.innerHTML = "I numeri del pc sono " + numeriRandom;
+        //console.log(numeriRandom);
+        h1Element.innerHTML += "I numeri inseriti da te sono " + numeriUomo;
+
+    } else {
+        secondi--;
+        h1Element.innerHTML = "Mancano " + secondi + " secondi.";
+        console.log("Mancano " + secondi + " secondi.");
+    }
+}, 1000)
+
