@@ -42,10 +42,12 @@ var clock = setInterval(function() {
             numeriUomo[i] = number;
         }
         //console.log(numeriUomo)
-        h1Element.innerHTML = "I numeri del pc sono " + numeriRandom;
+        h1Element.innerHTML = "I numeri del pc sono " + numeriRandom + " \n ";
         //console.log(numeriRandom);
         h1Element.innerHTML += "I numeri inseriti da te sono " + numeriUomo;
-        checkArray(numeriRandom, numeriUomo);
+
+        //console.log("Avete in comune" + checkArrayHow(numeriRandom, numeriUomo) + "valori");
+        //console.log("I valori condivisi sono: " + checkArrayWho(numeriRandom, numeriUomo));
 
     } else {
         secondi--;
@@ -54,21 +56,34 @@ var clock = setInterval(function() {
     }
 }, 1000)
 
-// CONTROLLO TRA ARRAY
-function checkArray( first, second ){
+// CONTROLLO TRA ARRAY DI QUANTI VALORI
+function checkArrayHow( first, second ){
 
     var cont = 0;
+
+    for(var i = 0; i < first.length; i++){
+        for(var j = 0; j < second.length; i++){
+            if(first[j] === second[i]){
+                cont++;
+            }
+        }
+    }
+    return cont;
+}
+
+// CONTROLLO TRA ARRAY DI QUALI VALORI
+function checkArrayWho( first, second ){
+
     var same = [];
     var k = 0;
 
     for(var i = 0; i < first.length; i++){
         for(var j = 0; j < second.length; i++){
             if(first[j] === second[i]){
-                cont++;
                 same[k] = first[j];
                 k++;
             }
         }
     }
-    return console.log("Nell'array sono stati trovati " + cont + "valori uguali \n I valori sono: " + same);
+    return same;
 }
