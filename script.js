@@ -20,7 +20,7 @@ var i = 0;
 while(numeriRandom.length < 5){
     var numeroRandom = numRand();
     if(numeriRandom.indexOf(numeroRandom) === -1){
-        numeriRandom[i] = numeroRandom;
+        numeriRandom.push(numeroRandom);
         i++;
     }
 }
@@ -39,15 +39,15 @@ var clock = setInterval(function() {
         // INPUT NUMERI UTENTE
         for(var i = 0; i < numeriRandom.length; i++){
             var number = parseInt(prompt("Inserisci il numero che ti ricordi"));
-            numeriUomo[i] = number;
+            numeriUomo.push(number);
         }
         //console.log(numeriUomo)
-        h1Element.innerHTML = "I numeri del pc sono " + numeriRandom + " \n ";
+        h1Element.innerHTML = "I numeri del pc sono " + numeriRandom + "<br>";
         //console.log(numeriRandom);
-        h1Element.innerHTML += "I numeri inseriti da te sono " + numeriUomo;
+        h1Element.innerHTML += "I numeri inseriti da te sono " + numeriUomo + "<br>";
 
-        //console.log("Avete in comune" + checkArrayHow(numeriRandom, numeriUomo) + "valori");
-        //console.log("I valori condivisi sono: " + checkArrayWho(numeriRandom, numeriUomo));
+        h1Element.innerHTML += "Avete in comune " + checkArrayHow(numeriRandom, numeriUomo) + " valori <br>";
+        h1Element.innerHTML += "I valori condivisi sono: " + checkArrayWho(numeriRandom, numeriUomo);
 
     } else {
         secondi--;
@@ -62,11 +62,9 @@ function checkArrayHow( first, second ){
     var cont = 0;
 
     for(var i = 0; i < first.length; i++){
-        for(var j = 0; j < second.length; i++){
-            if(first[j] === second[i]){
+            if(second.includes(first[i])){
                 cont++;
             }
-        }
     }
     return cont;
 }
@@ -78,7 +76,7 @@ function checkArrayWho( first, second ){
     var k = 0;
 
     for(var i = 0; i < first.length; i++){
-        for(var j = 0; j < second.length; i++){
+        for(var j = 0; j < second.length; j++){
             if(first[j] === second[i]){
                 same[k] = first[j];
                 k++;
